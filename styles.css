@@ -1,0 +1,372 @@
+:root {
+  color-scheme: dark;
+  --black: #050506;
+  --charcoal: #111214;
+  --panel: rgba(12, 13, 15, 0.72);
+  --red: #e53935;
+  --red-deep: #940f12;
+  --chrome: #d9dde0;
+  --muted: #a9afb5;
+  --line: rgba(255, 255, 255, 0.18);
+  --shadow: rgba(0, 0, 0, 0.72);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--black);
+  color: #fff;
+  font-family: "Arial Narrow", "Roboto Condensed", "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 70% 50%, rgba(229, 57, 53, 0.18), transparent 34rem),
+    linear-gradient(135deg, #050506 0%, #15171a 48%, #060607 100%);
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: saturate(1.12) contrast(1.12);
+  z-index: -4;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.84) 0%, rgba(0, 0, 0, 0.6) 42%, rgba(0, 0, 0, 0.12) 100%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 34%, rgba(0, 0, 0, 0.64) 100%);
+  z-index: -3;
+}
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 2.8vw, 2rem);
+  z-index: 2;
+}
+
+.brand-mark {
+  display: inline-grid;
+  width: clamp(3.9rem, 7vw, 5.5rem);
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1rem 1.5rem rgba(0, 0, 0, 0.66));
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.7rem, 2vw, 1.2rem);
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  color: var(--chrome);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  opacity: 0.82;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: #fff;
+}
+
+.hero-content {
+  width: min(52rem, 100%);
+  margin-left: clamp(7rem, 8vw, 8.5rem);
+  padding-top: 4.2rem;
+}
+
+.eyebrow,
+.brand-line {
+  margin: 0 0 1rem;
+  color: var(--red);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 15ch;
+  margin: 0;
+  color: #f8f9fa;
+  font-size: clamp(2.8rem, 5.5vw, 5.8rem);
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-shadow:
+    0 0.12em 0.32em rgba(0, 0, 0, 0.72),
+    0 0 2.8rem rgba(229, 57, 53, 0.22);
+}
+
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  color: var(--chrome);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+}
+
+.brand-line span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 1rem rgba(229, 57, 53, 0.9);
+}
+
+.subline {
+  max-width: 41rem;
+  margin: 0.9rem 0 1.25rem;
+  color: #e6e8ea;
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  line-height: 1.48;
+  text-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.7);
+}
+
+.waitlist-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  width: min(39rem, 100%);
+  padding: 0.42rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(14px);
+}
+
+.waitlist-form input {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  padding: 1rem 1.05rem;
+  background: rgba(0, 0, 0, 0.54);
+  color: #fff;
+}
+
+.waitlist-form input::placeholder {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.waitlist-form button {
+  min-height: 3.35rem;
+  border: 0;
+  padding: 0 1.2rem;
+  background: linear-gradient(135deg, var(--red), var(--red-deep));
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.waitlist-form button:hover,
+.waitlist-form button:focus-visible {
+  filter: brightness(1.12);
+}
+
+.form-note {
+  min-height: 1.4rem;
+  margin: 0.72rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.cap-strip {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.4rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: 4.4rem minmax(0, 14rem);
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(12px);
+}
+
+.cap-strip img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.cap-strip strong,
+.cap-strip span {
+  display: block;
+}
+
+.cap-strip strong {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+}
+
+.cap-strip span {
+  margin-top: 0.22rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    align-items: end;
+    min-height: 100svh;
+    padding: 1rem;
+  }
+
+  .hero-scrim {
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.68) 58%, rgba(0, 0, 0, 0.48) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent);
+  }
+
+  .site-header {
+    align-items: flex-start;
+  }
+
+  .social-links {
+    max-width: 11rem;
+    gap: 0.55rem;
+  }
+
+  .social-links a {
+    font-size: 0.7rem;
+  }
+
+  .hero-content {
+    margin: 0;
+    padding: 7.6rem 0 8.4rem;
+  }
+
+  h1 {
+    max-width: 10.2ch;
+    font-size: clamp(3.25rem, 14.4vw, 5rem);
+  }
+
+  .waitlist-form {
+    grid-template-columns: 1fr;
+    gap: 0.42rem;
+  }
+
+  .cap-strip {
+    left: 1rem;
+    right: 1rem;
+    grid-template-columns: 3.6rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header {
+    padding: 0.85rem;
+  }
+
+  .brand-mark {
+    width: 3.5rem;
+  }
+
+  .social-links {
+    max-width: 8rem;
+    gap: 0.35rem;
+  }
+
+  .social-links a {
+    font-size: 0.64rem;
+  }
+
+  .hero-content {
+    padding: 6.4rem 0 7.2rem;
+  }
+
+  .eyebrow {
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  h1 {
+    max-width: 9.2ch;
+    font-size: clamp(2.85rem, 13vw, 3.35rem);
+    line-height: 0.9;
+  }
+
+  .brand-line {
+    gap: 0.55rem;
+    font-size: 0.96rem;
+  }
+
+  .subline {
+    font-size: 0.96rem;
+  }
+
+  .waitlist-form button {
+    min-height: 3rem;
+    padding: 0 0.8rem;
+    font-size: 0.86rem;
+  }
+}
