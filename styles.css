@@ -288,7 +288,7 @@ h1 {
   padding: clamp(1rem, 4vw, 3rem);
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.48)),
-    url("assets/tsp-cap-culture-banner.png") center / cover no-repeat,
+    url("assets/tsp-gift-banner.png") center / cover no-repeat,
     var(--black);
 }
 
