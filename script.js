@@ -1,5 +1,4 @@
-const form = document.querySelector("[data-waitlist-form]");
-const note = document.querySelector("[data-form-note]");
+const forms = document.querySelectorAll("[data-waitlist-form]");
 const heroVideo = document.querySelector("[data-video-playlist]");
 
 if (heroVideo) {
@@ -24,7 +23,9 @@ if (heroVideo) {
   heroVideo.play().catch(() => {});
 }
 
-if (form && note) {
+forms.forEach((form) => {
+  const note = form.parentElement.querySelector("[data-form-note]");
+
   form.addEventListener("submit", () => {
     const email = new FormData(form).get("email");
 
@@ -34,6 +35,8 @@ if (form && note) {
       localStorage.setItem("tsp_waitlist_signups", JSON.stringify(signups));
     }
 
-    note.textContent = "Submitting your waitlist request...";
+    if (note) {
+      note.textContent = "You're on the Founder List. Welcome to TSP.";
+    }
   });
-}
+});
