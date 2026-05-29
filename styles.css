@@ -1308,3 +1308,22 @@ h3 {
     font-size: 0.86rem;
   }
 }
+
+@media (max-width: 700px) {
+  .hero-visual {
+    min-height: 36rem;
+  }
+
+  .visual-card {
+    min-height: 36rem;
+  }
+
+  .player-expand {
+    width: min(74%, 19rem);
+    bottom: 7.4rem;
+  }
+
+  .visual-copy {
+    bottom: 1rem;
+  }
+}
