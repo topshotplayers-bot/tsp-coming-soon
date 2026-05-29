@@ -38,6 +38,10 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 button,
 input {
   font: inherit;
@@ -409,6 +413,7 @@ h3 {
     linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
   box-shadow: 0 1.7rem 4rem var(--shadow);
   overflow: hidden;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .visual-card::before {
@@ -421,29 +426,45 @@ h3 {
   filter: blur(12px);
 }
 
-.player-art {
+.player-expand {
   position: absolute;
   left: 50%;
   bottom: 0.5rem;
   width: min(94%, 27rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  transform-origin: 50% 84%;
   transform: translateX(-50%);
-  filter: drop-shadow(0 1.4rem 1.6rem rgba(0, 0, 0, 0.58));
 }
 
-.cap-art {
-  position: absolute;
-  right: 8%;
-  top: 10%;
-  width: clamp(5.8rem, 21vw, 8.8rem);
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 50%;
-  opacity: 0.88;
-  mix-blend-mode: screen;
+.player-art {
+  display: block;
+  width: 100%;
+  filter: drop-shadow(0 1.4rem 1.6rem rgba(0, 0, 0, 0.58));
+  transition: filter 220ms ease;
+}
+
+.visual-card:hover,
+.visual-card:focus-within {
+  border-color: rgba(229, 57, 53, 0.55);
   box-shadow:
-    0 0 2.2rem rgba(229, 57, 53, 0.34),
-    0 1.2rem 1.8rem rgba(0, 0, 0, 0.52);
-  animation: cap-drift 4.5s ease-in-out infinite alternate;
+    0 1.9rem 4.4rem var(--shadow),
+    0 0 2.4rem rgba(229, 57, 53, 0.18);
+  transform: translateY(-3px);
+}
+
+.visual-card:hover .player-expand,
+.visual-card:focus-within .player-expand {
+  animation: brett-wave 920ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.visual-card:hover .player-art,
+.visual-card:focus-within .player-art {
+  filter:
+    drop-shadow(0 1.4rem 1.6rem rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 1.8rem rgba(229, 57, 53, 0.16));
 }
 
 .visual-copy {
@@ -545,13 +566,15 @@ h3 {
 }
 
 .platform,
-.beginning {
+.beginning,
+.cap-culture {
   display: grid;
   gap: 1.2rem;
 }
 
 .platform-copy p,
-.beginning-copy p {
+.beginning-copy p,
+.cap-culture-copy p {
   margin: 0.9rem 0 0;
   color: #dfe3e6;
   font-size: 1.08rem;
@@ -563,6 +586,66 @@ h3 {
 
 .platform-grid article {
   padding: 1rem;
+}
+
+.cap-culture {
+  align-items: center;
+  padding-top: clamp(2rem, 6vw, 4.5rem);
+}
+
+.cap-culture-art {
+  position: relative;
+  min-height: clamp(16rem, 56vw, 27rem);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 46%, rgba(229, 57, 53, 0.28), transparent 16rem),
+    radial-gradient(circle at 52% 52%, rgba(255, 196, 77, 0.16), transparent 10rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
+  box-shadow: 0 1.5rem 3.8rem rgba(0, 0, 0, 0.42);
+}
+
+.cap-culture-art::before,
+.cap-culture-art::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.cap-culture-art::before {
+  width: 88%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.85), transparent);
+  transform: rotate(-18deg);
+  box-shadow:
+    0 0.8rem 1.4rem rgba(229, 57, 53, 0.5),
+    0 -0.8rem 1.4rem rgba(229, 57, 53, 0.32);
+}
+
+.cap-culture-art::after {
+  inset: auto 10% 10%;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.64);
+  filter: blur(14px);
+}
+
+.cap-culture-art img {
+  position: relative;
+  z-index: 1;
+  width: min(68%, 18rem);
+  border-radius: 50%;
+  filter:
+    drop-shadow(0 1.5rem 1.8rem rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 2rem rgba(229, 57, 53, 0.3));
+  animation: cap-drift 4.5s ease-in-out infinite alternate;
+}
+
+.cap-culture-copy {
+  max-width: 39rem;
 }
 
 .beginning {
@@ -965,6 +1048,47 @@ h3 {
   letter-spacing: 0;
 }
 
+.player-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(229, 57, 53, 0.2), transparent 28rem),
+    rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+}
+
+.player-modal[hidden] {
+  display: none;
+}
+
+.player-modal img {
+  max-width: min(92vw, 42rem);
+  max-height: 86vh;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 2rem 2.8rem rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 2rem rgba(229, 57, 53, 0.18));
+}
+
+.modal-close {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  min-height: 2.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 0.9rem;
+  background: rgba(5, 5, 6, 0.82);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 @keyframes soft-pulse {
   from {
     opacity: 0.45;
@@ -984,6 +1108,28 @@ h3 {
 
   to {
     transform: translate3d(-0.5rem, 0.35rem, 0) rotate(5deg);
+  }
+}
+
+@keyframes brett-wave {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg) scale(1);
+  }
+
+  22% {
+    transform: translateX(-50%) translateY(-0.6rem) rotate(-2deg) scale(1.025);
+  }
+
+  46% {
+    transform: translateX(-50%) translateY(-0.28rem) rotate(2.2deg) scale(1.018);
+  }
+
+  70% {
+    transform: translateX(-50%) translateY(-0.45rem) rotate(-1.2deg) scale(1.022);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg) scale(1);
   }
 }
 
@@ -1063,6 +1209,10 @@ h3 {
     align-items: start;
   }
 
+  .cap-culture {
+    grid-template-columns: minmax(20rem, 0.82fr) minmax(0, 1fr);
+  }
+
   .beginning {
     grid-template-columns: 0.78fr 1fr;
   }
@@ -1126,24 +1276,20 @@ h3 {
   }
 
   .hero-visual {
-    min-height: 22rem;
+    min-height: 25.5rem;
   }
 
   .visual-card {
-    min-height: 22rem;
+    min-height: 25.5rem;
   }
 
   .player-art {
-    width: min(96%, 21.5rem);
-    bottom: 4.9rem;
+    width: 100%;
   }
 
-  .cap-art {
-    width: 5.2rem;
-    right: 1.1rem;
-    top: auto;
-    bottom: 8.9rem;
-    opacity: 0.72;
+  .player-expand {
+    width: min(108%, 24rem);
+    bottom: 4.4rem;
   }
 
   .visual-copy {

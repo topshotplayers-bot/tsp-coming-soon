@@ -84,8 +84,9 @@
 
           <aside class="hero-visual" aria-label="TSP character and cap visual">
             <div class="visual-card">
-              <img class="player-art" src="assets/bogey-brett-limited-edition-launch-transparent-clean.png" alt="Bogey Brett TSP golf collectible character" />
-              <img class="cap-art" src="assets/tsp-bottle-cap.png" alt="TSP crown bottle cap" />
+              <button class="player-expand" type="button" data-open-player aria-label="Open Bogey Brett larger view">
+                <img class="player-art" src="assets/bogey-brett-limited-edition-launch-transparent-clean.png" alt="Bogey Brett TSP golf collectible character" />
+              </button>
               <div class="visual-copy">
                 <strong>The original player is coming.</strong>
                 <span>Bogey Brett starts the TSP universe.</span>
@@ -117,6 +118,19 @@
             <h3>COLLECT</h3>
             <p>Build your lineup with future sports, players, heads, colourways and limited editions.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="section cap-culture" aria-labelledby="cap-culture-title">
+        <div class="cap-culture-art">
+          <img src="assets/tsp-bottle-cap.png" alt="TSP crown bottle cap" />
+        </div>
+        <div class="cap-culture-copy">
+          <p class="eyebrow">Cap Culture</p>
+          <h2 id="cap-culture-title">The Cap Culture wave is coming</h2>
+          <p>
+            After more than 120 years, the humble crown bottle cap gets a new life as the hero of play, collecting and social competition.
+          </p>
         </div>
       </section>
 
@@ -267,6 +281,10 @@
       </nav>
       <small>Copyright Fanlabs Pty Ltd</small>
     </footer>
+    <div class="player-modal" data-player-modal hidden>
+      <button class="modal-close" type="button" data-close-player aria-label="Close larger Bogey Brett view">Close</button>
+      <img src="assets/bogey-brett-limited-edition-launch-transparent-clean.png" alt="Bogey Brett TSP golf collectible character larger view" />
+    </div>
     <script src="script.js?v=3"></script>
   </body>
 </html>
