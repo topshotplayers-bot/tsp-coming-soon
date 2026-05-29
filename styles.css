@@ -1276,11 +1276,11 @@ h3 {
   }
 
   .hero-visual {
-    min-height: 25.5rem;
+    min-height: 34rem;
   }
 
   .visual-card {
-    min-height: 25.5rem;
+    min-height: 34rem;
   }
 
   .player-art {
@@ -1288,8 +1288,12 @@ h3 {
   }
 
   .player-expand {
-    width: min(108%, 24rem);
-    bottom: 4.4rem;
+    width: min(86%, 20rem);
+    bottom: 7.2rem;
+  }
+
+  .visual-copy {
+    bottom: 1rem;
   }
 
   .visual-copy {
