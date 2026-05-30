@@ -78,12 +78,8 @@ forms.forEach((form) => {
 
   form.addEventListener("submit", () => {
     if (note) {
-      note.textContent = "You're on the Founder List. Welcome to TSP.";
+      note.textContent = "Joining the Founder List...";
     }
-
-    window.setTimeout(() => {
-      window.location.href = "https://www.topshotplayers.com.au/thank-you";
-    }, 1500);
   });
 });
 
