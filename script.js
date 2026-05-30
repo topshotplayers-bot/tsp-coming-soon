@@ -77,17 +77,13 @@ forms.forEach((form) => {
   const note = form.parentElement.querySelector("[data-form-note]");
 
   form.addEventListener("submit", () => {
-    const email = new FormData(form).get("email");
-
-    if (email) {
-      const signups = JSON.parse(localStorage.getItem("tsp_waitlist_signups") || "[]");
-      signups.push({ email, createdAt: new Date().toISOString() });
-      localStorage.setItem("tsp_waitlist_signups", JSON.stringify(signups));
-    }
-
     if (note) {
       note.textContent = "You're on the Founder List. Welcome to TSP.";
     }
+
+    window.setTimeout(() => {
+      window.location.href = "https://www.topshotplayers.com.au/thank-you";
+    }, 1500);
   });
 });
 
